@@ -4,6 +4,10 @@ Imager is a Laravel package simplifying image processing operations using PHP's 
 
 ### Install
 
+Use composer to install the package
+
+	composer require dnsimmons/imager
+
 Add the service provider to your config/app.php along with an alias:
 
     'providers' => [

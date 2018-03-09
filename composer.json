@@ -1,6 +1,7 @@
 {
     "name": "dnsimmons/imager",
     "description": "Imager is a Laravel package simplifying image processing operations using PHP's native GD library extension",
+    "license": "LGPL-3.0",
     "authors": [
         {
             "name": "Dave Simmons",
