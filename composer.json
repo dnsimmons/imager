@@ -7,5 +7,10 @@
             "email": "hello@dsimmons.me"
         }
     ],
+    "autoload": {
+            "psr-4": {
+                    "Dnsimmons\\Imager\\": "src/"
+            }
+        },
     "require": {}
 }
