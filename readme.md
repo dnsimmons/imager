@@ -18,14 +18,10 @@ Add the service provider to your config/app.php along with an alias:
 
 ### Usage
 
-In your controller add a use statement with the alias.
-	
-	use Imager;
-
 Instantiate an Imager object passing the path to an input file.
 
 	$path = storage_path('app/example.jpg');
-	$imager = new Imager($path);
+	$imager = new \Imager($path);
 
 Perform some manipulations before rendering the output.
 
