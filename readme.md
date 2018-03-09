@@ -2,7 +2,7 @@
 
 Imager is a Laravel package simplifying image processing operations using PHP's native GD library extension.
 
-### Install
+## Install
 
 Use composer to install the package
 
@@ -20,25 +20,35 @@ Add the service provider to your config/app.php along with an alias:
 	    'Imager' => Dnsimmons\Imager\Imager::class,	
 	];
 
-### Usage
+## Usage
 
-Instantiate an Imager object passing the path to an input file.
+### Basic Usage
 
-	$path = storage_path('app/example.jpg');
-	$imager = new \Imager($path);
+The basic example provided below takes an input file example.jpg and resizes it to 640 x 480 pixels and then converts it to greyscale before outputting the raw image data to the browser.
 
-Perform some manipulations before rendering the output.
+	$imager = new \Imager('path/to/example.jpg');
+	$imager->resize(640,480)->greyscale()->render();
 
-	$imager->resize(640,480)->rotate(90)->render();
+### Using Scripts
+
+Imager also supports scripted processing using JSON. Let's repeat what we did above but instead deliver it as a script.
+
+	$imager = new \Imager('path/to/example.jpg');
+	$imager->script('path/to/script.json')->render();
+
+Here is our example commands script (script.json). Parameters are supplied in the same order as required by the actual methods for a given command.
+
+	[
+		{"command":"resize", "params":["640","480"]},
+		{"command":"greyscale", "params":[]}
+	]
 
 
-@todo ... improve docs
+## Conversions
 
+## Rendering
 
-
-----------
-
-### Commands
+## Commands
 
 **resize**( *integer $width, integer $height* )
 
@@ -89,6 +99,13 @@ Adjust the contrast of an image with a given level from -100 to 100.
 	$imager = new \Imager($path);
 	$imager->contrast(50)->render();
 
+**desaturate**( *integer $level* )
+
+Adjust the saturation of an image with a given level of 0 to 100.
+
+	$imager = new \Imager($path);
+	$imager->desaturate(50)->render();
+
 **greyscale**( )
 
 Converts an images color to greyscale.
@@ -110,6 +127,13 @@ Apply a color mask to an image with given RGB values from -255 to 255.
 
 	$imager = new \Imager($path);
 	$imager->colorize(128,0,255)->render();
+
+**replace**( integer $r, integer $g, integer $b, integer $r2, integer $g2, integer $b2 )
+
+Apply a color replacement to an image with given RGB values from -255 to 255.
+
+	$imager = new \Imager($path);
+	$imager->replace(255,0,0,0,0,255)->render();
 
 **negative**( )
 
@@ -141,3 +165,17 @@ Apply a sketch filter to an image.
 
 	$imager = new \Imager($path);
 	$imager->sketch()->render();
+
+**pixelate**( *integer $size* )
+
+Apply a pixelation filter to an image with a given pixel size.
+
+	$imager = new \Imager($path);
+	$imager->pixelate(4)->render();
+
+**noise**( integer $level )
+
+Adds noise to an image with a given noise level from 0 to ?.
+
+	$imager = new \Imager($path);
+	$imager->noise(20)->render();
