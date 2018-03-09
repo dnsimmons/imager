@@ -1,0 +1,11 @@
+{
+    "name": "dnsimmons/imager",
+    "description": "Imager is a Laravel package simplifying image processing operations using PHP's native GD library extension",
+    "authors": [
+        {
+            "name": "Dave Simmons",
+            "email": "hello@dsimmons.me"
+        }
+    ],
+    "require": {}
+}
