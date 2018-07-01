@@ -224,5 +224,5 @@ Applys a vignette effect to an image with a given size of 0 to 10.
 
 Applys an image in a given position on top of an image. Possible positions include center, top-left, top-right, bottom-left, and bottom-right.
 
-	$imager->watermark('path/to/watermark.png', $position='bottom-right')->render();
+	$imager->watermark('path/to/watermark.png', 'bottom-right')->render();
 
