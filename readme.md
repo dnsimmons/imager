@@ -26,12 +26,29 @@ Add the service provider to your config/app.php along with an alias:
 
 The basic example provided below takes an input file example.jpg and resizes it to 640 x 480 pixels and then converts it to greyscale before outputting the raw image data to the browser.
 
+**Basic Example**
+
 	$imager = new \Imager('path/to/example.jpg');
 	$imager->resize(640,480)->greyscale()->render();
+
+
+Most of the examples provided in this documentation uses a call to `render()` which will output the image as raw data back to the caller. In the event you wish to write images to disk simply use `write()` and specify the path and filename for the output.
+
+**Render Example**
+
+	$imager = new \Imager('path/to/example.jpg');
+	$imager->resize(640,480)->greyscale()->render();
+
+**Write Example**
+
+	$imager = new \Imager('path/to/example.jpg');
+	$imager->resize(640,480)->greyscale()->write('path/to/output.jpg');
 
 ### Using Scripts
 
 Imager also supports scripted processing using JSON. Let's repeat what we did above but instead deliver it as a script.
+
+**Scripted Example**
 
 	$imager = new \Imager('path/to/example.jpg');
 	$imager->script('path/to/script.json')->render();
@@ -43,12 +60,13 @@ Here is our example commands script (script.json). Parameters are supplied in th
 		{"command":"greyscale", "params":[]}
 	]
 
-
-## Conversions
-
-## Rendering
-
 ## Commands
+
+**convert**( *string $format* )
+
+Convert an image to a specified image format (JPEG, PNG, or GIF).
+
+	$imager->convert('JPEG')->render();
 
 **resize**( *integer $width, integer $height* )
 
