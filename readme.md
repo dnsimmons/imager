@@ -60,67 +60,13 @@ Here is our example commands script (script.json). Parameters are supplied in th
 		{"command":"greyscale", "params":[]}
 	]
 
-## Commands
+## Commands (A-Z)
 
-**convert**( *string $format* )
+**anaglyph**( )
 
-Convert an image to a specified image format (JPEG, PNG, or GIF).
+Applys a stereo 3D anaglyph effect to an image.
 
-	$imager->convert('JPEG')->render();
-
-**resize**( *integer $width, integer $height* )
-
-Resizes an image to specified width and height in pixels.
-
-	$imager->resize(640,480)->render();
-
-**scale**( *integer $width, integer $height* )
-
-Scales an image to specified width and height in pixels based on largest dimension keeping aspect ratio.
-
-	$imager->scale(640,480)->render();
-
-**crop**( *integer $x, integer $y, integer $width, integer $height* )
-
-Crops an image with specified width and height in pixels from a given x and y origin point.
-
-	$imager->crop(0,0,320,240)->render();
-
-**rotate**( *integer $degrees* )
-
-Rotates an image by a given number of degrees.
-
-	$imager->rotate(90)->render();
-
-**flip**( *string $direction* )
-
-Flips an image either horizontally (h), vertically (v), or both directions (b).
-
-	$imager->flip('b')->render();
-
-**brightness**( *integer $level* )
-
-Adjust the brightness of an image with a given level from -100 to 100.
-
-	$imager->brightness(50)->render();
-
-**contrast**( *integer $level* )
-
-Adjust the contrast of an image with a given level from -100 to 100.
-
-	$imager->contrast(50)->render();
-
-**desaturate**( *integer $level* )
-
-Adjust the saturation of an image with a given level of 0 to 100.
-
-	$imager->desaturate(50)->render();
-
-**greyscale**( )
-
-Converts an images color to greyscale.
-
-	$imager->greyscale()->render();
+	$imager->anaglyph()->render();
 
 
 **blackwhite**( )
@@ -129,29 +75,53 @@ Converts an images color to black and white.
 
 	$imager->blackwhite()->render();
 
+**blur**( *integer $level* )
+
+Blurs an image with a given level from 0 to 10.
+
+	$imager->smooth(10)->render();
+
+**brightness**( *integer $level* )
+
+Adjust the brightness of an image with a given level from -100 to 100.
+
+	$imager->brightness(50)->render();
+
+
+
+
+
 **colorize**( *integer $r, integer $g, integer $b* )
 
 Apply a color mask to an image with given RGB values from -255 to 255.
 
 	$imager->colorize(128,0,255)->render();
 
-**replace**( integer $r, integer $g, integer $b, integer $r2, integer $g2, integer $b2 )
+**convert**( *string $format* )
 
-Apply a color replacement to an image with given RGB values from -255 to 255.
+Convert an image to a specified image format (JPEG, PNG, or GIF).
 
-	$imager->replace(255,0,0,0,0,255)->render();
+	$imager->convert('JPEG')->render();
 
-**negative**( )
+**contrast**( *integer $level* )
 
-Apply a negative filter to an image.
+Adjust the contrast of an image with a given level from -100 to 100.
 
-	$imager->negative()->render();
+	$imager->contrast(50)->render();
 
-**sepia**( )
+**crop**( *integer $x, integer $y, integer $width, integer $height* )
 
-Apply a sepia filter to an image.
+Crops an image with specified width and height in pixels from a given x and y origin point.
 
-	$imager->sepia()->render();
+	$imager->crop(0,0,320,240)->render();
+
+
+**desaturate**( *integer $level* )
+
+Adjust the saturation of an image with a given level of 0 to 100.
+
+	$imager->desaturate(50)->render();
+
 
 **emboss**( )
 
@@ -159,11 +129,42 @@ Apply a emboss filter to an image.
 
 	$imager->emboss()->render();
 
-**sketch**( )
+**fisheye**( )
 
-Apply a sketch filter to an image.
+Applys a fisheye lens effect to an image.
 
-	$imager->sketch()->render();
+	$imager->fisheye()->render();
+
+**flip**( *string $direction* )
+
+Flips an image either horizontally (h), vertically (v), or both directions (b).
+
+	$imager->flip('b')->render();
+
+**greyscale**( )
+
+Converts an images color to greyscale.
+
+	$imager->greyscale()->render();
+
+**layer**( *string $image_path, integer $opacity* )
+
+Layers an image with a given opacity (from 0 to 100) on top of an image using identical dimensions.
+
+	$imager->layer('path/to/layer.png', 50)->render();
+
+**negative**( )
+
+Apply a negative filter to an image.
+
+	$imager->negative()->render();
+
+
+**noise**( *integer $level* )
+
+Adds noise to an image with a given noise level from 0 to ?.
+
+	$imager->noise(20)->render();
 
 **pixelate**( *integer $size* )
 
@@ -171,8 +172,57 @@ Apply a pixelation filter to an image with a given pixel size.
 
 	$imager->pixelate(4)->render();
 
-**noise**( integer $level )
+**replace**( integer $r, integer $g, integer $b, integer $r2, integer $g2, integer $b2 )
 
-Adds noise to an image with a given noise level from 0 to ?.
+Apply a color replacement to an image with given RGB values from -255 to 255.
 
-	$imager->noise(20)->render();
+	$imager->replace(255,0,0,0,0,255)->render();
+
+**resize**( *integer $width, integer $height* )
+
+Resizes an image to specified width and height in pixels.
+
+	$imager->resize(640,480)->render();
+
+**rotate**( *integer $degrees* )
+
+Rotates an image by a given number of degrees.
+
+	$imager->rotate(90)->render();
+
+**scale**( *integer $width, integer $height* )
+
+Scales an image to specified width and height in pixels based on largest dimension keeping aspect ratio.
+
+	$imager->scale(640,480)->render();
+
+**sepia**( )
+
+Apply a sepia filter to an image.
+
+	$imager->sepia()->render();
+
+**sketch**( )
+
+Apply a sketch filter to an image.
+
+	$imager->sketch()->render();
+
+**smooth**( *integer $level* )
+
+Smooths an image with a given level from 0 to 100.
+
+	$imager->smooth(10)->render();
+
+**vignette**( *integer $size* )
+
+Applys a vignette effect to an image with a given size of 0 to 10.
+
+	$imager->vignette(0.4)->render();
+
+**watermark**( *string $image_path, string $position* )
+
+Applys an image in a given position on top of an image. Possible positions include center, top-left, top-right, bottom-left, and bottom-right.
+
+	$imager->watermark('path/to/watermark.png', $position='bottom-right')->render();
+
