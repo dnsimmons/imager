@@ -70,6 +70,7 @@ class Imager extends Model{
 		'error_replace_g2' 		    => 'An invalid value was supplied for replacement RGB green.',
 		'error_replace_b2' 		    => 'An invalid value was supplied for replacement RGB blue.',
 		'error_desaturate_level' 	=> 'An invalid value was supplied for level.',
+		'error_vignette_size'       => 'An invalid value was supplied for size.',
 	];
 
 	/**
@@ -543,6 +544,10 @@ class Imager extends Model{
 
 		$orig_x = imagesx($this->image_resource);
 		$orig_y = imagesy($this->image_resource);
+
+		if(!is_numeric($size) || $size < 0 || $size > 10){
+			$this->error(__METHOD__, 'error_vignette_size');
+		}
 
     	$output = imagecreatetruecolor($orig_x, $orig_y);
     	imagesavealpha($output, true);
