@@ -1,6 +1,8 @@
-<center>
 
-->![](imager.png)<-
+
+<p align="center">
+	![](imager.png)
+</p>
 
 [![Latest Stable Version](https://poser.pugx.org/dnsimmons/imager/v/stable)](https://packagist.org/packages/dnsimmons/imager)
 [![Latest Unstable Version](https://poser.pugx.org/dnsimmons/imager/v/unstable)](https://packagist.org/packages/dnsimmons/imager)
