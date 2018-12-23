@@ -1,4 +1,4 @@
-
+<p align="center">
 
 ![](imager.png)
 
@@ -7,7 +7,7 @@
 [![Total Downloads](https://poser.pugx.org/dnsimmons/imager/downloads)](https://packagist.org/packages/dnsimmons/imager)
 [![License](https://poser.pugx.org/dnsimmons/imager/license)](https://packagist.org/packages/dnsimmons/imager)
 
-
+</p>
 
 ## About Imager
 
