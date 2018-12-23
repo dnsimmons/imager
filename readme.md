@@ -7,11 +7,11 @@
 
 ## About Imager
 
-Imager is a Laravel package simplifying image processing operations using PHP's native GD library extension.
+Imager is a [Laravel](http://laravel.com) package simplifying image processing operations using PHP's native GD library extension.
 
 ## Install
 
-Use composer to install the package
+Use [composer](http://getcomposer.org) to install the package
 
 	composer require dnsimmons/imager
 
