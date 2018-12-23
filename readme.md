@@ -1,8 +1,8 @@
 
-<p align="center">
+
 ![](imager.png)
 
-<p align="center">[![Latest Stable Version](https://poser.pugx.org/dnsimmons/imager/v/stable)](https://packagist.org/packages/dnsimmons/imager)
+[![Latest Stable Version](https://poser.pugx.org/dnsimmons/imager/v/stable)](https://packagist.org/packages/dnsimmons/imager)
 [![Latest Unstable Version](https://poser.pugx.org/dnsimmons/imager/v/unstable)](https://packagist.org/packages/dnsimmons/imager)
 [![Total Downloads](https://poser.pugx.org/dnsimmons/imager/downloads)](https://packagist.org/packages/dnsimmons/imager)
 [![License](https://poser.pugx.org/dnsimmons/imager/license)](https://packagist.org/packages/dnsimmons/imager)
