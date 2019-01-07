@@ -472,6 +472,25 @@ class Imager extends Model{
 	}
 
 	/**
+	* Apply a sharpening filter using a 3x3 convolution
+	*
+	* @param 	integer $passes 	Number of filter passes to apply
+	* @return 	object
+	*/
+	public final function sharpen($passes=1){
+
+		if(!is_numeric($passes) || $passes < 1){
+			$this->error(__METHOD__.': A invalid value was supplied for passes.');
+		}
+
+		for($i=0; $i<$passes; $i++){
+			$this->convolution([0, -1, 0], [-1, 5, -1], [0, -1, 0]);
+		}
+
+		return $this;
+	}
+
+	/**
 	* Apply a color replacement image processing filter to the image resource
 	*
 	* @param 	integer $r 	Target RGB Red value

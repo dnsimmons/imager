@@ -86,7 +86,7 @@ Converts an images color to black and white.
 
 Blurs an image with a given level from 0 to 10.
 
-	$imager->smooth(10)->render();
+	$imager->blur(1)->render();
 
 **brightness**( *integer $level* )
 
@@ -208,6 +208,12 @@ Scales an image to specified width and height in pixels based on largest dimensi
 Apply a sepia filter to an image.
 
 	$imager->sepia()->render();
+
+**sharpen**( *integer $level* )
+
+Sharpens an image with a given level from 0 to 10.
+
+	$imager->sharpen(1)->render();
 
 **sketch**( )
 
