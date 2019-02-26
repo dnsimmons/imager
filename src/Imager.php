@@ -2,8 +2,6 @@
 
 namespace Dnsimmons\Imager;
 
-use Illuminate\Database\Eloquent\Model;
-
 /**
 * Imager is a Laravel package simplifying image processing operations 
 * using PHP's native GD library extension.
@@ -14,7 +12,7 @@ use Illuminate\Database\Eloquent\Model;
 * @version 	2.0.0
 * @since    2018-01-01
 */
-class Imager extends Model{
+class Imager {
 
 	/**
 	 * Stores an image resource handle.
