@@ -13,5 +13,7 @@
                     "Dnsimmons\\Imager\\": "src/"
             }
         },
-    "require": {}
+    "require": {
+      "ext-gd": "*"
+    }
 }
