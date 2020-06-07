@@ -3,7 +3,7 @@
 namespace Dnsimmons\Imager;
 
 /**
-* Imager is a Laravel package simplifying image processing operations 
+* Imager is a Laravel package simplifying image processing operations
 * using PHP's native GD library extension.
 *
 * @package  Imager
@@ -31,7 +31,7 @@ class Imager {
 	*
 	* @param 	string 	$image_path 	Source image file path
 	* @uses     create()
-	* @return 	object
+	* @return 	object|bool
 	*/
 	public function __construct(string $image_path){
 		if(!$this->create($image_path)){
@@ -57,13 +57,13 @@ class Imager {
 			break;
 			case IMAGETYPE_PNG:
 				$this->image_resource = imagecreatefrompng($image_path);
-			break;	
+			break;
 			case IMAGETYPE_GIF:
 				$this->image_resource = imagecreatefromgif($image_path);
-			break;	
+			break;
 			default:
 				return false;
-			break;	
+			break;
 		}
 
 		return true;
@@ -95,7 +95,7 @@ class Imager {
 	* Replaces the current image resource with a resized version.
 	*
 	* @param 	integer $width 	 	New width of the image in pixels
-	* @param 	integer $height  	New height of the image in pixels	
+	* @param 	integer $height  	New height of the image in pixels
 	* @return 	object
 	*/
 	public final function resize(int $width, int $height){
@@ -108,7 +108,7 @@ class Imager {
 	* Scales based on largest source dimension to keep aspect ratio
 	*
 	* @param 	integer $width 		New width of the image in pixels
-	* @param 	integer $height 	New height of the image in pixels	
+	* @param 	integer $height 	New height of the image in pixels
 	* @return 	object
 	*/
 	public final function scale(int $width, int $height){
@@ -138,14 +138,14 @@ class Imager {
 	* @param 	integer 	$x 		 	Crop origin X co-ordinate
 	* @param 	integer 	$y 			Crop origin Y co-ordinate
 	* @param 	integer 	$width 		Width of the cropped area in pixels
-	* @param 	integer 	$height 	Height of the cropped area in pixels	
+	* @param 	integer 	$height 	Height of the cropped area in pixels
 	* @return 	object
 	*/
 	public final function crop(int $x, int $y, int $width, int $height){
 		$this->image_resource = imagecrop($this->image_resource, [
-			'x' 		=> $x, 
-			'y' 		=> $y, 
-			'width' 	=> $width, 
+			'x' 		=> $x,
+			'y' 		=> $y,
+			'width' 	=> $width,
 			'height' 	=> $height
 		]);
 		return $this;
@@ -342,7 +342,7 @@ class Imager {
     	$transp = imagecolorallocatealpha($output, 0, 0, 0, 127);
     	imagefill($output, 0, 0, $transp);
 	    for($x=0; $x<$orig_x; ++$x){
-	      for($y=0; $y<$orig_y; ++$y){  
+	      for($y=0; $y<$orig_y; ++$y){
 	        $index 		  = imagecolorat($this->image_resource, $x, $y);
 	        $rgb   		  = imagecolorsforindex($this->image_resource, $index);
 	        $l 			  = sin(M_PI / $orig_x * $x) * sin(M_PI / $orig_y * $y);
@@ -352,8 +352,8 @@ class Imager {
 	        $rgb['green'] *= $l;
 	        $rgb['blue']  *= $l;
 	        $rgb['alpha'] = (127 - (127 * ($l * 1)));
-	        $color = imagecolorallocatealpha($output, $rgb['red'], $rgb['green'], $rgb['blue'], $rgb['alpha']);	        
-	        imagesetpixel($output, $x, $y, $color);  
+	        $color = imagecolorallocatealpha($output, $rgb['red'], $rgb['green'], $rgb['blue'], $rgb['alpha']);
+	        imagesetpixel($output, $x, $y, $color);
 	      }
 	    }
 	    $this->image_resource = $output;
@@ -362,7 +362,7 @@ class Imager {
 
 	/**
 	 * Apply a fisheye lens effect on the current image.
-	 * 
+	 *
 	 * @return object
 	 */
 	public final function fisheye(){
@@ -376,7 +376,7 @@ class Imager {
 			$output_width = (2 * ($orig_x / pi()));
 		}
 		$output_center = ($output_width / 2);
-		$output = imagecreatetruecolor($output_width, $output_width); 
+		$output = imagecreatetruecolor($output_width, $output_width);
 		$transp = imagecolortransparent($output, imagecolorallocate($output, 0, 0, 0));
 		imagefill($this->image_resource, 0, 0, $transp);
 		for($c=0; $c<imagecolorstotal($this->image_resource); $c++){
@@ -440,7 +440,7 @@ class Imager {
 		$orig_y = imagesy($this->image_resource);
 		$output = imagecreatetruecolor($orig_x, $orig_y);
 	    for($x=0; $x < $orig_x; $x++){
-	        for($y=0; $y < $orig_y; $y++){	
+	        for($y=0; $y < $orig_y; $y++){
 				$rgb    = imagecolorat($this->image_resource, $x, $y);
 	            $r      = ($rgb >> 16) & 0xFF;
 	            $g      = ($rgb >> 8) & 0xFF;
@@ -454,7 +454,7 @@ class Imager {
 		            $r = 0;
 		            $g = 0;
 		            $b = 0;
-		        }			
+		        }
 	            $random = mt_rand(-$level, $level);
 				$color  = imagecolorallocate($this->image_resource, $r, $g, $b);
 	            imagesetpixel($output, $x, $y, $color);
@@ -469,7 +469,7 @@ class Imager {
 	 *
 	 * @param  string 	$image_path 	Path to the overlay source image
 	 * @param  string   $position 		Overlay position (top-left, top-right, center, bottom-left, bottom-right)
-	 * @return object
+	 * @return object|bool
 	 */
 	public final function watermark(string $image_path, string $position=''){
 		if(!file_exists($image_path) || is_dir($image_path)){
@@ -482,13 +482,13 @@ class Imager {
 			break;
 			case IMAGETYPE_PNG:
 				$img = imagecreatefrompng($image_path);
-			break;	
+			break;
 			case IMAGETYPE_GIF:
 				$img = imagecreatefromgif($image_path);
-			break;	
+			break;
 			default:
 				return false;
-			break;	
+			break;
 		}
 		$sx = imagesx($img);
 		$sy = imagesy($img);
@@ -517,10 +517,10 @@ class Imager {
 
 	/**
 	 * Overlays an image on the image as a layer with identical dimensions and transparency options.
-	 * 
+	 *
 	 * @param  string  $image_path Path to the layer image
 	 * @param  integer $opacity    Opacity of the layer (0-100)
-	 * @return object
+	 * @return object|bool
 	 */
 	public final function layer(string $image_path, int $opacity=50){
 		if(!file_exists($image_path) || is_dir($image_path)){
@@ -533,13 +533,13 @@ class Imager {
 			break;
 			case IMAGETYPE_PNG:
 				$img = imagecreatefrompng($image_path);
-			break;	
+			break;
 			case IMAGETYPE_GIF:
 				$img = imagecreatefromgif($image_path);
-			break;	
+			break;
 			default:
 				return false;
-			break;	
+			break;
 		}
 		$ox = imagesx($this->image_resource);
 		$oy = imagesy($this->image_resource);
@@ -554,7 +554,7 @@ class Imager {
 
 	/**
 	 * Overlays a duplicate on the image skewed horizontally with red channel removed.
-	 * 
+	 *
 	 * @return object
 	 */
 	public final function anaglyph(){
@@ -568,9 +568,9 @@ class Imager {
 		imagefilter($copy, IMG_FILTER_COLORIZE, 0, 255, 255);
 		imagecopymerge($output, $copy, 30, 0, 0, 0, $ox, $oy, 50);
 		$output = imagecrop($output, [
-			'x' 	 => 30, 
-			'y' 	 => 0, 
-			'width'  => ($ox-30), 
+			'x' 	 => 30,
+			'y' 	 => 0,
+			'width'  => ($ox-30),
 			'height' => $oy
 		]);
 		$this->image_resource = $output;
@@ -579,7 +579,7 @@ class Imager {
 
 	/**
 	 * Overlays a string of text on top of the current image in a given position.
-	 * 
+	 *
 	 * @param  string $text      Text
 	 * @param  integer $size      Font size (in pixels when using TTF, 1-5 otherwise)
 	 * @param  integer $angle     Text angle (ignored when NOT using TTF font)
@@ -589,7 +589,7 @@ class Imager {
 	 * @param  integer $g         Text color RGB green value
 	 * @param  integer $b         Text color RGB blue value
 	 * @param  string $font_path Optional path to a TTF font file
-	 * @return object 
+	 * @return object
 	 */
 	public final function text(string $text, int $size, int $angle, int $x, int $y, int $r, int $g, int $b, string $font_path=''){
 		$color = imagecolorallocate($this->image_resource, $r, $g, $b);
@@ -605,7 +605,7 @@ class Imager {
 	/**
 	 * Performs a convolution between an image and a 3x3 kernel.
 	 * https://en.wikipedia.org/wiki/Kernel_(image_processing)
-	 * 
+	 *
 	 * @param  array $matrix1 array of convolution values for top row
 	 * @param  array $matrix2 array of convolution values for middle row
 	 * @param  array $matrix3 array of convolution values for bottom row
@@ -631,10 +631,10 @@ class Imager {
 			break;
 			case 'PNG':
 				$this->image_mime = IMAGETYPE_PNG;
-			break;	
+			break;
 			case 'GIF':
 				$this->image_mime = IMAGETYPE_GIF;
-			break;		
+			break;
 		}
 		return $this;
 	}
@@ -654,11 +654,11 @@ class Imager {
 			case IMAGETYPE_PNG:
 				header('Content-type: '.IMAGETYPE_PNG);
 				imagepng($this->image_resource);
-			break;	
+			break;
 			case IMAGETYPE_GIF:
 				header('Content-type: '.IMAGETYPE_GIF);
 				imagegif($this->image_resource);
-			break;		
+			break;
 		}
 		imagedestroy($this->image_resource);
 	}
@@ -677,20 +677,20 @@ class Imager {
 			break;
 			case IMAGETYPE_PNG:
 				imagepng($this->image_resource, $image_path);
-			break;	
+			break;
 			case IMAGETYPE_GIF:
 				imagegif($this->image_resource, $image_path);
-			break;		
+			break;
 		}
-		imagedestroy($this->image_resource);	
+		imagedestroy($this->image_resource);
 		return true;
 	}
 
 	/**
 	* Reads, parses, and runs a scripted set of commands from a JSON file.
 	*
-	* @param 	string $script_path JSON script file path
-	* @return 	boolean
+	* @param  string $script_path JSON script file path
+	* @return object
 	*/
 	public final function script(string $script_path){
 		$json   = file_get_contents($script_path);
@@ -702,7 +702,7 @@ class Imager {
 				call_user_func_array([$this, $method], $params);
 			}
 		}
-		return $this;		
+		return $this;
 	}
 
 }
