@@ -1,7 +1,9 @@
 # Imager
 
-[![Total Downloads](https://poser.pugx.org/dnsimmons/imager/downloads)](https://packagist.org/packages/dnsimmons/imager)
-[![License](https://poser.pugx.org/dnsimmons/imager/license)](https://packagist.org/packages/dnsimmons/imager)
+[![Latest Stable Version](https://poser.pugx.org/dnsimmons/imager/v)](//packagist.org/packages/dnsimmons/imager) 
+[![Latest Unstable Version](https://poser.pugx.org/dnsimmons/imager/v/unstable)](//packagist.org/packages/dnsimmons/imager) 
+[![Total Downloads](https://poser.pugx.org/dnsimmons/imager/downloads)](//packagist.org/packages/dnsimmons/imager) 
+[![License](https://poser.pugx.org/dnsimmons/imager/license)](//packagist.org/packages/dnsimmons/imager)
 
 ## About Imager
 
